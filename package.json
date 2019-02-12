@@ -4,7 +4,8 @@
   "description": "This assessment is for a role on our UI Engineering team. The assessment will likely be completed in 4 hours, but is not timed. Use your judgement on how much time you’d like to spend completing it and submit your solution in any state of completion you wish as long as you feel the underlying gist of your architecture and coding capabilities are fairly represented.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --mode=development --watch"
   },
   "keywords": [],
   "author": "",
