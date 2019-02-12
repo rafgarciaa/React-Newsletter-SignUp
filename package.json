@@ -1,0 +1,22 @@
+{
+  "name": "newsletter-signup",
+  "version": "1.0.0",
+  "description": "This assessment is for a role on our UI Engineering team. The assessment will likely be completed in 4 hours, but is not timed. Use your judgement on how much time you’d like to spend completing it and submit your solution in any state of completion you wish as long as you feel the underlying gist of your architecture and coding capabilities are fairly represented.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
