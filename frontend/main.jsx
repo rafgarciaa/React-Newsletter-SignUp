@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Components
-import SignUp from './signup';
+import SignUpForm from './signup_form';
 
 const Root = () => {
-    console.log('react works');
+    // console.log('react works');
     return (
-        <div>
-            {/* Components go here */}
-            <SignUp />
+        <div className="root-container">
+            <SignUpForm />
         </div>
     );
 };

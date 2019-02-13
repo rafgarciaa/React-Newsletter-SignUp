@@ -99,15 +99,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup */ "./frontend/signup.jsx");
+/* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./signup_form */ "./frontend/signup_form.jsx");
 
  // Components
 
 
 
 var Root = function Root() {
-  console.log('react works');
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  // console.log('react works');
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "root-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_signup_form__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -117,19 +119,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
-/***/ "./frontend/signup.jsx":
-/*!*****************************!*\
-  !*** ./frontend/signup.jsx ***!
-  \*****************************/
+/***/ "./frontend/signup_form.jsx":
+/*!**********************************!*\
+  !*** ./frontend/signup_form.jsx ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SignUp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SignUpForm; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -139,37 +143,163 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
-var SignUp =
+
+var SignUpForm =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(SignUp, _React$Component);
+  _inherits(SignUpForm, _React$Component);
 
-  function SignUp(props) {
-    _classCallCheck(this, SignUp);
+  function SignUpForm(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SignUp).call(this, props));
+    _classCallCheck(this, SignUpForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SignUpForm).call(this, props));
+    _this.state = {
+      fname: '',
+      lname: '',
+      email: '',
+      emailValid: false,
+      nameValid: false,
+      congrats: 'Congratulations'
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.update = _this.update.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
   }
 
-  _createClass(SignUp, [{
+  _createClass(SignUpForm, [{
+    key: "getHeader",
+    value: function getHeader() {
+      if (!this.state.emailValid && !this.state.nameValid) {
+        return 'Sign Up for TLC Newsletter.';
+      } else if (this.state.emailValid && !this.state.nameValid) {
+        return 'Almost done! Please enter your first and last name.';
+      } else if (this.state.emailValid && this.state.nameValid) {
+        return 'Thank You for signing up!';
+      }
+    }
+  }, {
+    key: "generateBtn",
+    value: function generateBtn() {
+      if (!this.state.emailValid) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit"
+        }, "Next");
+      } else if (this.state.emailValid && !this.state.nameValid) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit"
+        }, "Sign Up");
+      } else if (this.state.emailValid && this.state.nameValid) {
+        return null;
+      }
+    }
+  }, {
+    key: "generateCheckbox",
+    value: function generateCheckbox() {
+      if (!this.state.emailValid) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "checkbox"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "terms"
+        }, " ", " I agree to receive information from Discovery Communications in accordance with the following ", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "https://www.freeprivacypolicy.com/privacy/view/a2423832df7136c1dbf9fa96749fb82a",
+          target: "_blank"
+        }, "Privacy Policy"), "."));
+      }
+    }
+  }, {
+    key: "generateInput",
+    value: function generateInput() {
+      if (!this.state.emailValid) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "email",
+          placeholder: "enter email address",
+          value: this.state.email,
+          onChange: this.update('email')
+        });
+      } else if (!this.state.nameValid) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          placeholder: "First Name",
+          value: this.state.fname,
+          onChange: this.update('fname')
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          placeholder: "Last Name",
+          value: this.state.lname,
+          onChange: this.update('lname')
+        }));
+      } else if (this.state.emailValid && this.state.nameValid) {
+        console.log(this.state.congrats);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Look out for the latest news on your favorite shows.");
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      console.log('handle submit');
+      this.validateField();
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      console.log('errors here');
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        // debugger
+        _this2.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "validateField",
+    value: function validateField() {
+      var emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      var nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
+      this.setState({
+        emailValid: emailValid,
+        nameValid: nameValid
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var prompt = this.getHeader();
+      var button = this.generateBtn();
+      var inputText = this.generateInput();
+      var checkbox = this.generateCheckbox();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        class: "sign-up-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Basic Newsletter SignUp App"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem repudiandae esse harum tenetur suscipit quae deleniti, rem eveniet laboriosam quisquam et nisi impedit amet, animi, sed possimus. Distinctio, voluptates facilis!"));
+        className: "sign-up-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header-prompt"
+      }, prompt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-container"
+      }, inputText, button), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "privacy-policy"
+      }, checkbox)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sign-up-errors"
+      }, this.renderErrors()));
     }
   }]);
 
-  return SignUp;
+  return SignUpForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 

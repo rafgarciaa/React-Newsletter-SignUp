@@ -1,0 +1,90 @@
+html, body {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font: inherit;
+	text-align: inherit;
+	text-decoration: inherit;
+	color: #94AEBF;
+	font-size: 18px;
+	font-family: "Open Sans", sans-serif;
+	background: #120f24;
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+	/* Styles */
+	.sign-up-container {
+		width: 40vw;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 10%;
+		margin: auto;
+	}
+
+	.header-prompt {
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		line-height: 1.5;
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+
+	.input-container {
+		display: flex;
+		justify-content: left;
+		margin-bottom: 5px;
+	}
+
+	input:not([type="checkbox"]) {
+		background: #2a273a;
+		border-radius: 5px;
+		border: none;
+		line-height: 2;
+		font-size: 18px;
+		text-indent: 5%;
+		color: #696674;
+		width: 45%;
+		margin-right: 20px;
+	}
+
+	input[type="checkbox"] {
+  		margin: inherit;
+	}
+
+	input::placeholder {
+		color: #696674;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 30px;
+		font-size: 18px;
+		text-indent: 5%;
+	}
+
+	.input-container {
+		margin-bottom: 10px;
+	}
+
+	button {
+		background: #ED1F34;
+		border-radius: 5px;
+		color: #FFFFFF;
+		border: none;
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 16px;
+		text-align: center;
+		line-height: 1.8;
+		width: 25%;
+	}
+
+	.privacy-policy {
+		font-size: 15px;
+		color: #44424b;
+		font-weight: 200;
+	}
+}
+
