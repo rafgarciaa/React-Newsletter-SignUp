@@ -170,7 +170,7 @@ function (_React$Component) {
       email: '',
       emailValid: false,
       nameValid: false,
-      congrats: 'Congratulations'
+      errors: []
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.update = _this.update.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -185,6 +185,7 @@ function (_React$Component) {
       } else if (this.state.emailValid && !this.state.nameValid) {
         return 'Almost done! Please enter your first and last name.';
       } else if (this.state.emailValid && this.state.nameValid) {
+        console.log('Congratulations!');
         return 'Thank You for signing up!';
       }
     }
@@ -208,8 +209,13 @@ function (_React$Component) {
     value: function generateCheckbox() {
       if (!this.state.emailValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "checkbox"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          id: "terms",
+          type: "checkbox",
+          value: "policy",
+          onChange: function onChange() {
+            return console.log('Validated');
+          }
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "terms"
         }, " ", " I agree to receive information from Discovery Communications in accordance with the following ", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: "https://www.freeprivacypolicy.com/privacy/view/a2423832df7136c1dbf9fa96749fb82a",
@@ -240,21 +246,16 @@ function (_React$Component) {
           onChange: this.update('lname')
         }));
       } else if (this.state.emailValid && this.state.nameValid) {
-        console.log(this.state.congrats);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Look out for the latest news on your favorite shows.");
       }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      console.log('handle submit');
-      this.validateField();
-    }
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      console.log('errors here');
+      e.preventDefault(); // debugger
+      // console.log('handle submit');
+
+      this.validateField(); // this.renderErrors();
     }
   }, {
     key: "update",
@@ -262,8 +263,7 @@ function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        // debugger
-        _this2.setState(_defineProperty({}, field, e.target.value));
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -271,9 +271,20 @@ function (_React$Component) {
     value: function validateField() {
       var emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
       var nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
+      var errors = [];
+
+      if (!emailValid) {
+        if (this.state.email.length === 0) {
+          errors.push("Email can't be blank.");
+        } else {
+          errors.push("".concat(this.state.email, " is invalid."));
+        }
+      }
+
       this.setState({
         emailValid: emailValid,
-        nameValid: nameValid
+        nameValid: nameValid,
+        errors: errors
       });
     }
   }, {
@@ -283,6 +294,8 @@ function (_React$Component) {
       var button = this.generateBtn();
       var inputText = this.generateInput();
       var checkbox = this.generateCheckbox();
+      var errors = this.state.errors ? this.state.errors : []; // debugger
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-up-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -295,7 +308,9 @@ function (_React$Component) {
         className: "privacy-policy"
       }, checkbox)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-up-errors"
-      }, this.renderErrors()));
+      }, errors.map(function (error, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, error);
+      })));
     }
   }]);
 
