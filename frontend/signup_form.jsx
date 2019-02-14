@@ -19,7 +19,7 @@ export default class SignUpForm extends React.Component {
 
 	getHeader() {
 	  if (!this.state.emailValid && !this.state.nameValid) {
-		  return 'Sign Up for TLC Newsletter.';
+		  return 'Sign Up for the TLC Newsletter';
 	  } else if (this.state.emailValid && !this.state.nameValid) {
 		  return 'Almost done! Please enter your first and last name.';
 	  } else if (this.state.emailValid && this.state.nameValid) {
@@ -63,10 +63,10 @@ export default class SignUpForm extends React.Component {
 		);
 	  } else if (!this.state.nameValid) {
 		return(
-		  <>
+		  <div className="name-input">
 			<input type="text" placeholder="First Name" value={this.state.fname} onChange={this.update('fname')} />
 			<input type="text" placeholder="Last Name" value={this.state.lname} onChange={this.update('lname')} />
-		  </>
+		  </div>
 		);
 	  } else if (this.state.emailValid && this.state.nameValid) {
 		return(

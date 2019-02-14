@@ -182,7 +182,7 @@ function (_React$Component) {
     key: "getHeader",
     value: function getHeader() {
       if (!this.state.emailValid && !this.state.nameValid) {
-        return 'Sign Up for TLC Newsletter.';
+        return 'Sign Up for the TLC Newsletter';
       } else if (this.state.emailValid && !this.state.nameValid) {
         return 'Almost done! Please enter your first and last name.';
       } else if (this.state.emailValid && this.state.nameValid) {
@@ -236,7 +236,9 @@ function (_React$Component) {
           onChange: this.update('email')
         });
       } else if (!this.state.nameValid) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "name-input"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           placeholder: "First Name",
           value: this.state.fname,

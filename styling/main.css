@@ -6,16 +6,16 @@ html, body {
 	text-align: inherit;
 	text-decoration: inherit;
 	color: #94AEBF;
-	font-size: 18px;
+	font-size: 20px;
 	font-family: "Open Sans", sans-serif;
 	background: #120f24;
 }
 
 /* Desktops and laptops ----------- */
-@media only screen  and (min-width : 1224px) {
+@media only screen and (min-width : 1224px) {
 	/* Styles */
 	.sign-up-container {
-		width: 610px;
+		width: 50vw;
 		position: absolute;
 		left: 0;
 		right: 0;
@@ -43,7 +43,7 @@ html, body {
 		border-radius: 5px;
 		border: none;
 		line-height: 2;
-		font-size: 18px;
+		font-size: 20px;
 		text-indent: 5%;
 		color: #696674;
 		width: 30%;
@@ -56,8 +56,7 @@ html, body {
 
 	input[type="checkbox"] {
 		margin: inherit;
-		background-color: #a77e2d;
-		color: #ffffff;
+		background-color: #ffffff;
 	}
 
 	input::placeholder {
@@ -65,12 +64,17 @@ html, body {
 		font-style: normal;
 		font-weight: normal;
 		line-height: 30px;
-		font-size: 18px;
+		font-size: 20px;
 		text-indent: 5%;
 	}
 
 	.input-container {
 		margin-bottom: 12px;
+	}
+
+	.input-container > span {
+		font-weight: lighter;
+		font-size: 15px;
 	}
 
 	button {
@@ -81,9 +85,9 @@ html, body {
 		font-style: normal;
 		text-transform: uppercase;
 		font-weight: 500;
-		font-size: 16px;
+		font-size: 20px;
 		text-align: center;
-		line-height: 1.8;
+		line-height: 2;
 		width: 25%;
 	}
 
@@ -100,3 +104,201 @@ html, body {
 	}
 }
 
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+	.sign-up-container {
+		width: 610px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 40%;
+		margin: auto;
+	}
+
+	.header-prompt {
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		line-height: 1.5;
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+
+	.input-container {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	input:not([type="checkbox"]) {
+		background: #2a273a;
+		border-radius: 5px;
+		border: none;
+		line-height: 2;
+		font-size: 20px;
+		text-indent: 5%;
+		color: #696674;
+		width: 30%;
+		margin-right: 20px;
+	}
+
+	input[type="email"] {
+		width: 70%;
+	}
+
+	input[type="checkbox"] {
+		margin: inherit;
+		background-color: #ffffff;
+	}
+
+	input::placeholder {
+		color: #696674;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 30px;
+		font-size: 20px;
+		text-indent: 5%;
+	}
+
+	.input-container {
+		margin-bottom: 12px;
+	}
+
+	.input-container > span {
+		font-weight: lighter;
+		font-size: 15px;
+	}
+
+	button {
+		background: #ED1F34;
+		border-radius: 5px;
+		color: #FFFFFF;
+		border: none;
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 20px;
+		text-align: center;
+		line-height: 2;
+		width: 25%;
+	}
+
+	.privacy-policy {
+		display: inline-block;
+		font-size: 12px;
+		color: #44424b;
+		font-weight: 200;
+		width: 60%;
+	}
+
+	.terms {
+		display: inline;
+	}
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+	.sign-up-container {
+		width: 70vw;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 40%;
+		margin: auto;
+	}
+
+	.header-prompt {
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		line-height: 1;
+		font-size: 44px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.input-container {
+		display: inline-block;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	.input-container {
+		margin-bottom: 12px;
+		text-align: center;
+		font-size: 30px;
+	}
+
+	input:not([type="checkbox"]) {
+		background: #2a273a;
+		border-radius: 5px;
+		border: none;
+		line-height: 3;
+		font-size: 35px;
+		text-indent: 5%;
+		color: #696674;
+		width: 50%;
+	}
+
+	input[type="email"] {
+		width: 100%;
+	}
+
+	input[type="checkbox"] {
+		margin: inherit;
+		background-color: #ffffff;
+		width: 30px; /*Desired width*/
+		height: 30px; /*Desired height*/
+		cursor: pointer;
+		/* -webkit-appearance: none;
+		appearance: none; */
+	}
+
+	input::placeholder {
+		color: #696674;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 30px;
+		font-size: 40px;
+		text-indent: 5%;
+	}
+
+	.name-input {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.name-input input:first-of-type {
+		margin-right: 10px;
+	}
+
+	button {
+		background: #ED1F34;
+		border-radius: 5px;
+		color: #FFFFFF;
+		border: none;
+		font-style: normal;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 40px;
+		text-align: center;
+		line-height: 2.5;
+		width: 100%;
+		margin-top: 13px;
+	}
+
+	.privacy-policy {
+		display: inline-block;
+		font-size: 12px;
+		color: #44424b;
+		font-weight: 200;
+		width: 90%;
+	}
+
+	.terms {
+		display: inline;
+		font-size: 30px;
+	}
+}
