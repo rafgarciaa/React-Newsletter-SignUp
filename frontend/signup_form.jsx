@@ -12,7 +12,8 @@ export default class SignUpForm extends React.Component {
 		  errors: []
 		};
 
-		this.handleSubmit = this.handleSubmit.bind(this);
+		this.validateEmail = this.validateEmail.bind(this);
+		this.validateName = this.validateName.bind(this);
 		this.update = this.update.bind(this);
 	}
 
@@ -29,9 +30,9 @@ export default class SignUpForm extends React.Component {
 
 	generateBtn() {
 		if (!this.state.emailValid) {
-			return <button type="submit">Next</button>;
+			return <button type="submit" onClick={this.validateEmail}>Next</button>;
 		} else if (this.state.emailValid && !this.state.nameValid) {
-			return <button type="submit">Sign Up</button>;
+			return <button type="submit" onClick={ this.validateName }>Sign Up</button>;
 		} else if (this.state.emailValid && this.state.nameValid) {
 			return null;
 		}
@@ -41,7 +42,7 @@ export default class SignUpForm extends React.Component {
 	  if (!this.state.emailValid) {
 		return(
 			<>
-				<input id='terms' type="checkbox" value="policy" onChange={ () => console.log('Validated') }/>
+				<input type="checkbox" value="policy" onChange={ () => console.log('Validated') }/>
 				<p className='terms'>
 				{` `} I agree to receive information from Discovery Communications in
 					accordance with the following {` `}
@@ -73,14 +74,6 @@ export default class SignUpForm extends React.Component {
 		);
 	  }
 	}
-
-	handleSubmit(e) {
-		e.preventDefault();
-		// debugger
-		// console.log('handle submit');
-		this.validateField();
-		// this.renderErrors();
-	}
 	
 	update(field) {
 		return (e) => {
@@ -88,11 +81,10 @@ export default class SignUpForm extends React.Component {
 		};
 	}
 	
-	validateField() {
+	validateEmail(e) {
+		e.preventDefault();
 		let emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-		let nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
 		const errors = [];
-
 		if (!emailValid) {
 			if (this.state.email.length === 0) {
 				errors.push(`Email can't be blank.`);
@@ -100,8 +92,22 @@ export default class SignUpForm extends React.Component {
 				errors.push(`${this.state.email} is invalid.`);
 			}
 		}
-
-		this.setState({ emailValid: emailValid, nameValid: nameValid, errors: errors });
+		this.setState({ emailValid: emailValid, errors: errors });
+	}
+	
+	validateName(e) {
+		e.preventDefault();
+		let nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
+		const errors = [];
+		const name = this.state.fname + this.state.lname;
+		if (!nameValid) {
+			if (name.length === 0) {
+				errors.push(`Name can't be blank.`);
+			} else {
+				errors.push(`${this.state.fname} ${this.state.lname} is invalid.`);
+			}
+		}
+		this.setState({ nameValid: nameValid, errors: errors });
 	}
 
 	render() {
@@ -110,11 +116,10 @@ export default class SignUpForm extends React.Component {
 		const inputText = this.generateInput();
 		const checkbox = this.generateCheckbox();
 		const errors = this.state.errors ? this.state.errors : [];
-		// debugger
 
 		return (
 		  <div className="sign-up-container">
-			<form onSubmit={ this.handleSubmit }>
+			<form>
 				<div className="header-prompt">{ prompt }</div>
 			  	<div className="input-container">
 					{ inputText }
@@ -128,7 +133,7 @@ export default class SignUpForm extends React.Component {
 			<div className='sign-up-errors'>
 			  {
 				 errors.map( (error, idx) => {
-					 return <p>{ error }</p>;
+					 return <p key={idx}>{ error }</p>;
 				 }) 
 			  }
 			</div>

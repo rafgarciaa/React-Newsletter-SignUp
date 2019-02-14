@@ -172,7 +172,8 @@ function (_React$Component) {
       nameValid: false,
       errors: []
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.validateEmail = _this.validateEmail.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.validateName = _this.validateName.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.update = _this.update.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
@@ -194,11 +195,13 @@ function (_React$Component) {
     value: function generateBtn() {
       if (!this.state.emailValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "submit"
+          type: "submit",
+          onClick: this.validateEmail
         }, "Next");
       } else if (this.state.emailValid && !this.state.nameValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "submit"
+          type: "submit",
+          onClick: this.validateName
         }, "Sign Up");
       } else if (this.state.emailValid && this.state.nameValid) {
         return null;
@@ -209,7 +212,6 @@ function (_React$Component) {
     value: function generateCheckbox() {
       if (!this.state.emailValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "terms",
           type: "checkbox",
           value: "policy",
           onChange: function onChange() {
@@ -250,14 +252,6 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault(); // debugger
-      // console.log('handle submit');
-
-      this.validateField(); // this.renderErrors();
-    }
-  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -267,10 +261,10 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "validateField",
-    value: function validateField() {
+    key: "validateEmail",
+    value: function validateEmail(e) {
+      e.preventDefault();
       var emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-      var nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
       var errors = [];
 
       if (!emailValid) {
@@ -283,6 +277,26 @@ function (_React$Component) {
 
       this.setState({
         emailValid: emailValid,
+        errors: errors
+      });
+    }
+  }, {
+    key: "validateName",
+    value: function validateName(e) {
+      e.preventDefault();
+      var nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
+      var errors = [];
+      var name = this.state.fname + this.state.lname;
+
+      if (!nameValid) {
+        if (name.length === 0) {
+          errors.push("Name can't be blank.");
+        } else {
+          errors.push("".concat(this.state.fname, " ").concat(this.state.lname, " is invalid."));
+        }
+      }
+
+      this.setState({
         nameValid: nameValid,
         errors: errors
       });
@@ -294,13 +308,10 @@ function (_React$Component) {
       var button = this.generateBtn();
       var inputText = this.generateInput();
       var checkbox = this.generateCheckbox();
-      var errors = this.state.errors ? this.state.errors : []; // debugger
-
+      var errors = this.state.errors ? this.state.errors : [];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-up-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header-prompt"
       }, prompt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-container"
@@ -309,7 +320,9 @@ function (_React$Component) {
       }, checkbox)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sign-up-errors"
       }, errors.map(function (error, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, error);
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          key: idx
+        }, error);
       })));
     }
   }]);
