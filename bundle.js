@@ -236,9 +236,7 @@ function (_React$Component) {
           onChange: this.update('email')
         });
       } else if (!this.state.nameValid) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "name-input"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
           placeholder: "First Name",
           value: this.state.fname,
@@ -265,6 +263,8 @@ function (_React$Component) {
   }, {
     key: "validateEmail",
     value: function validateEmail(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
       var errors = [];
@@ -280,11 +280,15 @@ function (_React$Component) {
       this.setState({
         emailValid: emailValid,
         errors: errors
+      }, function () {
+        return console.log(_this3.state);
       });
     }
   }, {
     key: "validateName",
     value: function validateName(e) {
+      var _this4 = this;
+
       e.preventDefault();
       var nameValid = this.state.fname.match(/[A-Z]/i) && this.state.lname.match(/[A-Z]/i);
       var errors = [];
@@ -301,6 +305,8 @@ function (_React$Component) {
       this.setState({
         nameValid: nameValid,
         errors: errors
+      }, function () {
+        return console.log(_this4.state);
       });
     }
   }, {

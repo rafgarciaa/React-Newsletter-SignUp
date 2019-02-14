@@ -63,10 +63,10 @@ export default class SignUpForm extends React.Component {
 		);
 	  } else if (!this.state.nameValid) {
 		return(
-		  <div className="name-input">
+		  <>
 			<input type="text" placeholder="First Name" value={this.state.fname} onChange={this.update('fname')} />
 			<input type="text" placeholder="Last Name" value={this.state.lname} onChange={this.update('lname')} />
-		  </div>
+		  </>
 		);
 	  } else if (this.state.emailValid && this.state.nameValid) {
 		return(
@@ -92,7 +92,7 @@ export default class SignUpForm extends React.Component {
 				errors.push(`${this.state.email} is invalid.`);
 			}
 		}
-		this.setState({ emailValid: emailValid, errors: errors });
+		this.setState({ emailValid: emailValid, errors: errors }, () => console.log(this.state));
 	}
 	
 	validateName(e) {
@@ -107,7 +107,7 @@ export default class SignUpForm extends React.Component {
 				errors.push(`${this.state.fname} ${this.state.lname} is invalid.`);
 			}
 		}
-		this.setState({ nameValid: nameValid, errors: errors });
+		this.setState({ nameValid: nameValid, errors: errors }, () => console.log(this.state));
 	}
 
 	render() {
