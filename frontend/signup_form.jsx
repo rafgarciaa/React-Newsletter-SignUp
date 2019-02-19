@@ -9,10 +9,11 @@ export default class SignUpForm extends React.Component {
 		  email: '',
 		  emailValid: false,
 		  nameValid: false,
+		  checked: false,
 		  errors: []
 		};
 
-		this.validateEmail = this.validateEmail.bind(this);
+		this.validateEmailAndTerms = this.validateEmailAndTerms.bind(this);
 		this.validateName = this.validateName.bind(this);
 		this.update = this.update.bind(this);
 	}
@@ -30,7 +31,7 @@ export default class SignUpForm extends React.Component {
 
 	generateBtn() {
 		if (!this.state.emailValid) {
-			return <button type="submit" onClick={this.validateEmail}>Next</button>;
+			return <button type="submit" onClick={ this.validateEmailAndTerms }>Next</button>;
 		} else if (this.state.emailValid && !this.state.nameValid) {
 			return <button type="submit" onClick={ this.validateName }>Sign Up</button>;
 		} else if (this.state.emailValid && this.state.nameValid) {
@@ -42,7 +43,7 @@ export default class SignUpForm extends React.Component {
 	  if (!this.state.emailValid) {
 		return(
 			<>
-				<input type="checkbox" value="policy" onChange={ () => console.log('Validated') }/>
+				<input type="checkbox" value="policy" onChange={ this.updateCheckbox.bind(this) }/>
 				<p className='terms'>
 				{` `} I agree to receive information from Discovery Communications in
 					accordance with the following {` `}
@@ -73,15 +74,19 @@ export default class SignUpForm extends React.Component {
 		  <span>Look out for the latest news on your favorite shows.</span>
 		);
 	  }
-	}
-	
+	}	
+
 	update(field) {
 		return (e) => {
 			this.setState({ [field]: e.currentTarget.value });
 		};
 	}
+
+	updateCheckbox(e) {
+		this.setState({ checked: e.currentTarget.checked });
+	}
 	
-	validateEmail(e) {
+	validateEmailAndTerms(e) {
 		e.preventDefault();
 		let emailValid = this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 		const errors = [];
@@ -91,6 +96,10 @@ export default class SignUpForm extends React.Component {
 			} else {
 				errors.push(`${this.state.email} is invalid.`);
 			}
+		}
+
+		if (!this.state.checked) {
+			errors.push(`You must agree to the terms.`);
 		}
 		this.setState({ emailValid: emailValid, errors: errors }, () => console.log(this.state));
 	}

@@ -170,9 +170,10 @@ function (_React$Component) {
       email: '',
       emailValid: false,
       nameValid: false,
+      checked: false,
       errors: []
     };
-    _this.validateEmail = _this.validateEmail.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.validateEmailAndTerms = _this.validateEmailAndTerms.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.validateName = _this.validateName.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.update = _this.update.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
@@ -196,7 +197,7 @@ function (_React$Component) {
       if (!this.state.emailValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
-          onClick: this.validateEmail
+          onClick: this.validateEmailAndTerms
         }, "Next");
       } else if (this.state.emailValid && !this.state.nameValid) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -214,9 +215,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "checkbox",
           value: "policy",
-          onChange: function onChange() {
-            return console.log('Validated');
-          }
+          onChange: this.updateCheckbox.bind(this)
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "terms"
         }, " ", " I agree to receive information from Discovery Communications in accordance with the following ", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -261,8 +260,15 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "validateEmail",
-    value: function validateEmail(e) {
+    key: "updateCheckbox",
+    value: function updateCheckbox(e) {
+      this.setState({
+        checked: e.currentTarget.checked
+      });
+    }
+  }, {
+    key: "validateEmailAndTerms",
+    value: function validateEmailAndTerms(e) {
       var _this3 = this;
 
       e.preventDefault();
@@ -275,6 +281,10 @@ function (_React$Component) {
         } else {
           errors.push("".concat(this.state.email, " is invalid."));
         }
+      }
+
+      if (!this.state.checked) {
+        errors.push("You must agree to the terms.");
       }
 
       this.setState({
